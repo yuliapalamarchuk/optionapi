@@ -17,7 +17,7 @@
         {{ cart_item_data.quantity }}
       </span>
     </div>
-    <button @click="deleteFromCart" class="v-cart-item_btn btn">Delete</button>
+    <button @click="deleteFromCart(index)" class="v-cart-item_btn btn">Delete</button>
   </div>
 </template>
 
@@ -39,8 +39,8 @@ export default {
   },
   computed: {},
   methods: {
-    deleteFromCart() {
-      this.$emit("deleteFromCart");
+    deleteFromCart(index) {
+      this.$emit("deleteFromCart", index);
     },
   },
   watch: {},

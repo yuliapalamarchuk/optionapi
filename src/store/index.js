@@ -5,6 +5,7 @@ export default createStore({
   state: {
     products: [],
     cart: [],
+    total: 0,
   },
   getters: {
     PRODUCTS(state) {
@@ -12,6 +13,9 @@ export default createStore({
     },
     CART(state) {
       return state.cart;
+    },
+    TOTAL(state) {
+      return state.total;
     },
   },
   mutations: {
@@ -23,10 +27,18 @@ export default createStore({
         product.quantity += 1;
       } else {
         state.cart.push(product);
+        product.quantity = 1;
       }
+
+      state.total += product.price;
     },
     REMOVE_FROM_CART: (state, index) => {
-      state.cart.splice(index, 1);
+      state.total -= state.cart[index].price;
+      if (state.cart[index].quantity === 1) {
+        state.cart.splice(index, 1);
+      } else {
+        state.cart[index].quantity--;
+      }
     },
   },
   actions: {

@@ -16,6 +16,9 @@
       :cart_item_data="item"
       @deleteFromCart="deleteFromCart(index)"
     />
+    <div v-if="TOTAL">
+      <h1>Total: {{ TOTAL }}</h1>
+    </div>
   </div>
 </template>
 
@@ -39,7 +42,7 @@ export default {
     return;
   },
   computed: {
-    ...mapGetters(["CART"]),
+    ...mapGetters(["CART", "TOTAL"]),
   },
   methods: {
     ...mapActions(["DELETE_FROM_CART"]),
@@ -57,10 +60,10 @@ export default {
   flex-wrap: wrap;
   color: grey;
   font-size: 20px;
-min-height: 100vh;
-display: flex;
-flex-direction: column;
-justify-content: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 p {
@@ -71,21 +74,20 @@ p {
 .v-cart_btn {
   background: #b32ce3;
   border-radius: 9px;
- color: black;
+  color: black;
   border: 1px solid #ffffff;
   cursor: pointer;
   font-weight: 700;
   font-size: 12px;
   box-shadow: 0 0 10px 0 #ffffff;
   transition: 0.7s;
-  position: absolute ;
+  position: absolute;
   top: 30px;
   left: 30px;
 }
 
-.basket{
-    color: #b32ce3;
-
+.basket {
+  color: #b32ce3;
 }
 </style>
 
